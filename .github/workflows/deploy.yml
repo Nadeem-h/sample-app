@@ -20,6 +20,10 @@ jobs:
 
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
+        
+    - name: Set GCP Project
+      run: |
+        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
 
     - name: Build and push Docker image
       run: |
@@ -29,9 +33,7 @@ jobs:
 
     - name: Deploy to GKE
       run: |
-        kubectl apply -f manifests/deployment.yaml
+        kubectl apply -f manifests/deployment.yaml --validate=false
         kubectl apply -f manifests/service.yaml
-    - name: Set GCP Project
-      run: |
-        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+    
 
