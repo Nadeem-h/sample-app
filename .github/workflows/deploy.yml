@@ -13,10 +13,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Authenticate to GCP
-      uses: google-github-actions/auth@v1
-      with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
+    - - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
 
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
@@ -28,7 +29,7 @@ jobs:
     - name: Build and push Docker image
       run: |
         gcloud auth configure-docker
-        docker build -t gcr.io/focused-clock-449509-e9/sample-app:latest
+        docker build -t gcr.io/focused-clock-449509-e9/sample-app:latest .
         docker push gcr.io/focused-clock-449509-e9/sample-app:latest
 
     - name: Deploy to GKE
