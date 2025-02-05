@@ -34,6 +34,7 @@ jobs:
 
     - name: Deploy to GKE
       run: |
+        gcloud container clusters get-credentials gke-cluster --region us-central1
         kubectl apply -f manifests/deployment.yaml --validate=false
         kubectl apply -f manifests/service.yaml
     
