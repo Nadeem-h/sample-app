@@ -37,7 +37,7 @@ jobs:
     - name: Install Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
       with:
-        version: '397.0.0' 
+        version: '446.0.0' 
         project_id: focused-clock-449509-e9
     
     - name: Install gke-gcloud-auth-plugin
