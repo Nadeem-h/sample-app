@@ -16,4 +16,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
+  secretRefs:
+    - name: github-actions-key-secret

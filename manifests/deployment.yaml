@@ -19,4 +19,9 @@ spec:
         image: gcr.io/focused-clock-449509-e9/sample-app:latest
         ports:
         - containerPort: 3000
-
+        env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              valueFrom:
+                secretKeyRef:
+                  name: github-actions-key
+                  key: github-actions-key.json
