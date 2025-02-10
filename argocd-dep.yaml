@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-sample
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devops-sample
+    spec:
+      containers:
+        - name: devops-sample
+          image: my-image
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              valueFrom:
+                secretKeyRef:
+                  name: github-actions-key
+                  key: github-actions-key.json
+
