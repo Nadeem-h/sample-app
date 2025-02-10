@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-    res.send("Hello, World! This app is running on GCP GKE Done!");
+    res.send("Hello, World! This app is running on GCP GKE Done now!");
 });
 
 app.listen(port, () => {
