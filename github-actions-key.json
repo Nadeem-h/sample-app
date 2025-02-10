@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-actions-key
+type: Opaque
+data:
+  github-actions-key.json: |
 {
   "type": "service_account",
   "project_id": "focused-clock-449509-e9",
