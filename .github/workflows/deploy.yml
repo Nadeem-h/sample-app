@@ -14,11 +14,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Google Cloud credentials
-        uses: google-github-actions/setup-gcloud@v0.2.0
-        with:
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-
+      uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
 
     - name: Authenticate to GCP
       uses: google-github-actions/auth@v1
@@ -41,6 +40,7 @@ jobs:
         gcloud auth configure-docker
         docker build -t gcr.io/focused-clock-449509-e9/sample-app:latest .
         docker push gcr.io/focused-clock-449509-e9/sample-app:latest
+
     - name: Install Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
       with:
@@ -51,11 +51,9 @@ jobs:
       run: | 
         gcloud components install gke-gcloud-auth-plugin
 
-
     - name: Deploy to GKE
       run: |
         gcloud container clusters get-credentials gke-cluster --region us-central1
         kubectl apply -f manifests/deployment.yaml --validate=false
         kubectl apply -f manifests/service.yaml
-    
 
